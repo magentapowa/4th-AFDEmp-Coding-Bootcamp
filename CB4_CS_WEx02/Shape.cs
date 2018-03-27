@@ -14,7 +14,7 @@ namespace CB4_CS_WEx02
     //
     // Shape 
     //
-    public class Shape
+    public /*abstract*/ class Shape  // This is not 'abstract' no more. See method GetInfo.
     {
         // Fields
         private Color _color;
@@ -34,7 +34,7 @@ namespace CB4_CS_WEx02
             this._color = color;
         }
 
-        public virtual string GetInfo()
+        public virtual string GetInfo() // I made this vistual so it can be used to get the enclosing text.
 		{    
 		    return $"Shape of color {this._color}.";
 		}
@@ -71,7 +71,7 @@ namespace CB4_CS_WEx02
         }
 
         // Methods
-        public virtual double GetArea()
+        public virtual double GetArea()  // I made this double instead of void for eficiency. I don't want to use anoter variable and two statements in the main program.
         {
             return this._width * this._height;
         }
