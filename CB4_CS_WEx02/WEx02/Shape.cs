@@ -123,12 +123,11 @@ namespace CB4_CS_WEx02
     public sealed class Square : Rectangle
     {
         private string _name = "Square";
-        private double _side;
 
 
 		public override string GetInfo()
 		{
-            return $"{this._name} of color {this.GetColor} and side {this._side}.";
+            return $"{this._name} of color {this.GetColor} and side {this.Height}.";
 		}
 
         public override string ToString()
@@ -136,11 +135,10 @@ namespace CB4_CS_WEx02
             return this.GetInfo();
         }
 
-		// Constructor
+        // Constructor
         public Square(double side) : base(side, side)
         {
-            this._side = side;
-
+            
         }
     }
 

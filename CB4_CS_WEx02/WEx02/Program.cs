@@ -28,7 +28,6 @@ namespace CB4_CS_WEx02
             sq2.SetColor(Color.Orange);
             sq3.SetColor(Color.Red);
 
-
             List<Rectangle> myShapeList = new List<Rectangle>();
             myShapeList.Add(r1);
             myShapeList.Add(r2);
