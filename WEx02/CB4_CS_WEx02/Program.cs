@@ -50,8 +50,6 @@ namespace CB4_CS_WEx02
             {
                 Console.WriteLine(myShapeList[i] + $"   Area= {myShapeList[i].GetArea()}");
             }
-
-
         }
     }
 }

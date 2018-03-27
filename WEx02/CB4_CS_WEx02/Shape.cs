@@ -120,10 +120,11 @@ namespace CB4_CS_WEx02
     //
     // Square
     //
-    public sealed class Square : Rectangle, IComparable
+    public sealed class Square : Rectangle
     {
         private string _name = "Square";
         private double _side;
+
 
 		public override string GetInfo()
 		{
