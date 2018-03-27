@@ -53,8 +53,8 @@ namespace CB4_CS_WEx02
     {
         // Fields
         private string _name = "Rectangle";
-        private double _height;
-        private double _width;
+        protected double _height;
+        protected double _width;
 
         // Properties
         public double Height
