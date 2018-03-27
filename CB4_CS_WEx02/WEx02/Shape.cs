@@ -17,7 +17,7 @@ namespace CB4_CS_WEx02
     public /*abstract*/ class Shape  // This is not 'abstract' no more. See method GetInfo.
     {
         // Fields
-        private Color _color;
+        protected Color _color;
 
         //Properties
         public Color GetColor
