@@ -24,7 +24,7 @@ namespace WEx03
     }
 
 
-    public class Guid : IEquatable
+    public class Guid : IEquatable<Guid>
     {
         private readonly string url = "https://www.uuidgenerator.net/api/guid";
         public string ID { get; private set; }
@@ -34,10 +34,9 @@ namespace WEx03
             return this.ID;
 		}
 
-        public override bool Equals(object obj)
+        public bool Equals(Guid other)
         {
-            Guid guid = obj as Guid;
-            if (this.ID == guid.ID )
+            if (this.ID == other.ID)
             {
                 return true;
             }
