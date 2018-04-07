@@ -7,3 +7,5 @@ Methods:
  - T Get(int index)
  - void Remove(int index)
 
+ Check Program.cs for implementation examples.
+
