@@ -27,7 +27,7 @@ namespace WEx03
     public class Guid : IEquatable<Guid>
     {
         private readonly string url = "https://www.uuidgenerator.net/api/guid";
-        public string ID { get; private set; }
+        private string ID;
 
 		public override string ToString()
 		{
@@ -80,14 +80,6 @@ namespace WEx03
         public string Title { get; set; }
         public string Body { get; set; }
 
-        // Converts BlogPost object to json string format
-        public static string ConvertBlogToJSONstring(BlogPost post, List<User> userList)
-        {
-            string result = "";
-            result = ("{ \"id\" : \"" + post.Id + "\", \"user\" : { \"username\" : \"" + post.User.Username + "\", \"id\" : \"" + userList.Find(j => j.Username == post.User.Username).Id + "\" }, \"Title\" : \"" + post.Title + "\", \"Body\" : \"" + post.Body + "\" }");
-            return result;
-        }
-
         // Converts BlogPost list object to json string format
         public static string ConvertBlogListToJSONstring(List<BlogPost> list, List<User> userList)
         {
@@ -96,73 +88,13 @@ namespace WEx03
 
             for (int i = 0; i < list.Count; i++)
             {
-                //parts[i] = ("{ \"id\" : \"" + list[i].Id + "\", \"user\" : { \"username\" : \"" + list[i].User.Username + "\", \"id\" : \"" + userList.Find(j => j.Username == list[i].User.Username).Id + "\" }, \"Title\" : \"" + list[i].Title + "\", \"Body\" : \"" + list[i].Body + "\" }");
-                parts[i] = ConvertBlogToJSONstring(list[i], userList);
+                parts[i] = ("{ \"id\" : \"" + list[i].Id + "\", \"user\" : { \"username\" : \"" + list[i].User.Username + "\", \"id\" : \"" + userList.Find(j => j.Username == list[i].User.Username).Id + "\" }, \"Title\" : \"" + list[i].Title + "\", \"Body\" : \"" + list[i].Body + "\" }");
+
             }
             result += string.Join(", ", parts) + "]";
             return result;
         }
 
-
-        public static int FindPostByID(List<BlogPost> list, Guid Id)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].Id == Id)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        public static List<BlogPost> FindAllWithWord(List<BlogPost> list, string word)
-        {
-            List<BlogPost> result = new List<BlogPost>();
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].Body.ToLower().Contains(word.ToLower()))
-                {
-                    result.Add(list[i]);
-                }
-            }
-            return result;
-        }
-        public static List<BlogPost> FindAllByTitleWordsMoreThan(List<BlogPost> list, int words)
-        {
-            List<BlogPost> result = new List<BlogPost>();
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].Title.Split(' ').Length > words)
-                {
-                    result.Add(list[i]);
-                }
-            }
-            return result;
-        }
-        public static List<BlogPost> FindAllByUsername(List<BlogPost> list,List<User> userList, string username)
-        {
-            List<BlogPost> result = new List<BlogPost>();
-            User user = userList.Find(i => i.Username == username);
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].User == user)
-                {
-                    result.Add(list[i]);
-                }
-            }
-            return result;
-        }
-
-        public static List<Guid> GetAllIDs(List<BlogPost> list)
-        {
-            List<Guid> result = new List<Guid>();
-            for (int i = 0; i < list.Count; i++)
-            {
-                result.Add(list[i].Id);
-            }
-            return result;
-        }
 
 		public override string ToString()
 		{

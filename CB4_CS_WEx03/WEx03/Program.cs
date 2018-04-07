@@ -24,11 +24,10 @@ namespace WEx03
                 Console.WriteLine(users[i]);
             }
 
-
+            // Initialize 20 random posts
             List<BlogPost> myBlogPostList = new List<BlogPost>();
             Random rnd = new Random();
             int index;
-            // Initialize 20 random posts
             for (int i = 0; i < 20; i++)
             {
                 index = rnd.Next(users.Count);
@@ -36,77 +35,63 @@ namespace WEx03
                 myBlogPostList.Add(new BlogPost(users[index],tempLI.Title,tempLI.Body));
             }
 
+
             //Print BlogPost list
             Console.WriteLine("\nBlog Post list:");
             Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(myBlogPostList, users));
 
 
-            // Implement BlogPost.FindPostByID using a random element from the list
+            List<BlogPost> result;
+
+            // 1. Find the blog post with a given id. // using a random element from the list
             BlogPost postToSearch = myBlogPostList[rnd.Next(myBlogPostList.Count)];
-
-            Console.WriteLine();
             Guid GUIDtoSearch = postToSearch.Id;
-            Console.WriteLine("Id to search: " + GUIDtoSearch);
-            if (postToSearch != null)
-            {
-                index = BlogPost.FindPostByID(myBlogPostList, GUIDtoSearch);
-                if (index > -1)
-                {
-                    Console.WriteLine("Result: " + BlogPost.ConvertBlogToJSONstring(myBlogPostList[index], users));
-                }
-                else
-                {
-                    Console.WriteLine("THere is no post matching that guid.");
-                }
-            }
-            // Testing BlogPost.FindPostByID using a non-existent guid.
-            Console.WriteLine();
+            Console.WriteLine("\nId to search: " + GUIDtoSearch);
+            Console.WriteLine("Result: ");
+            result = myBlogPostList.FindAll(i => i.Id == GUIDtoSearch);
+            Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(result, users));
+
+            // 1. Find the blog post with a given id. // using a non-existent guid.
             GUIDtoSearch = new Guid("asdjasdf-34fdg-v34-t344t");
-            Console.WriteLine("Id to search: " + GUIDtoSearch);
-            index = BlogPost.FindPostByID(myBlogPostList,GUIDtoSearch);
-            if (index > -1)
-            {
-                Console.WriteLine("Result: " + BlogPost.ConvertBlogToJSONstring(myBlogPostList[index], users));
-            }
-            else
-            {
-                Console.WriteLine("There is no post matching that guid.");
-            }
-           
+            Console.WriteLine("\nId to search: " + GUIDtoSearch);
+            Console.WriteLine("Result: ");
+            result = myBlogPostList.FindAll(i => i.Id == GUIDtoSearch);
+            Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(result, users));
 
 
-            // Testing BlogPost.FindAllWithWord
+            // 2. Find all posts that contain a specific word in their bodies.
             string wordToSearch = "if";
-            List<BlogPost> result = BlogPost.FindAllWithWord(myBlogPostList,wordToSearch);
-            Console.WriteLine();
-            Console.WriteLine("Word to search: " + wordToSearch);
+            Console.WriteLine("\nWord to search: " + wordToSearch);
             Console.WriteLine("Results: ");
+            result = myBlogPostList.FindAll(i => i.Body.Contains(wordToSearch));
             Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(result, users));
 
-            // Testing BlogPost.FindAllByTitleWordsMoreThan
+            // 3. Find all posts that have a title with more than two words.
             int wordLimit = 2;
-            result = BlogPost.FindAllByTitleWordsMoreThan(myBlogPostList, wordLimit);
-            Console.WriteLine();
-            Console.WriteLine("Word limit: " + wordLimit);
+            Console.WriteLine("\nTItle word lower limit : " + wordLimit);
             Console.WriteLine("Results: ");
+            result = myBlogPostList.FindAll(i => i.Title.Split(' ').Length > wordLimit);
             Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(result, users));
 
-            // Testing BlogPost.FindAllByUsername
+            // 4. Find all posts written from a specific user.
             string usernameToSearch = "Mike";
-            result = BlogPost.FindAllByUsername(myBlogPostList, users, usernameToSearch);
-            Console.WriteLine();
-            Console.WriteLine("Userame to search: " + usernameToSearch);
+            Console.WriteLine("\nUserame to search: " + usernameToSearch);
             Console.WriteLine("Results: ");
+            result = myBlogPostList.FindAll(i => i.User == users.Find(j => j.Username == usernameToSearch));
             Console.WriteLine(BlogPost.ConvertBlogListToJSONstring(result, users));
 
-            // Testing BlogPost.GetAllIDs
+
+            // 5. Return a list of all the post ids.  
+            // The method BlogPost.ConvertBlogListToJSONstring can not be used in this case. The output format is not the same.
             Console.WriteLine("\nAll ids of 'myBlogPostList':");
-            List<Guid> IDs= BlogPost.GetAllIDs(myBlogPostList);
-            for (int i = 0; i < IDs.Count; i++)
+            List<Guid> guids = new List<Guid>();
+            foreach (BlogPost item in myBlogPostList)
             {
-                Console.WriteLine(IDs[i]);
+                guids.Add(item.Id);
+                Console.WriteLine(item.Id);
             }
 
+                
             //
             // How can we create methods for the list object of our own class??
             // 
