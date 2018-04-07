@@ -16,9 +16,9 @@ To test the functionality, initialize a list of sample blog posts, implement the
 5. Return a list of all the post ids.
 
 Resources:
- https://www.w3schools.com/js/js_json_intro.asp (JSON)
- https://www.lipsum.com/ (Sample text generator)
- https://www.guidgenerator.com/ (Online GUID generator)
+ - https://www.w3schools.com/js/js_json_intro.asp (JSON)
+ - https://www.lipsum.com/ (Sample text generator)
+ - https://www.guidgenerator.com/ (Online GUID generator)
 
 // Sample output
 { "id": "b58f9d4e-f559-4f20-8a1e-c236e1f2ebc9", "user": { "id": "f4f2e0cd-c15e-4823-8434-3bf7afa05af2", "username": "mnikolaidis" }, "title": "Lorem ipsum.", "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet dictum facilisis. Nullam et ligula tincidunt justo dictum consequat at vel justo. Vestibulum blandit dapibus maximus. Curabitur tristique elit id facilisis ullamcorper. Ut erat risus, laoreet vel nisi non, lacinia maximus ante. Aenean velit tortor, varius pretium varius vitae, feugiat ac odio. Proin ut consequat neque." }
