@@ -6,7 +6,7 @@ namespace Lists
     {
         public static void Main()
         {
-            LinkedList myList = new LinkedList();
+            MyListObject<int> myList = new MyListObject<int>();
 
         //Appending
             Console.WriteLine("Appending:");
@@ -64,14 +64,7 @@ namespace Lists
             Console.WriteLine($"list: {myList.GetString()}, length: {myList.Count}");
 
             index = 5; //Out of range
-            try
-            {
-                myList.Remove(index);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            myList.Remove(index);
             Console.WriteLine($"Removing item index {index}:");
             Console.WriteLine($"list: {myList.GetString()}, length: {myList.Count}");
             Console.WriteLine();

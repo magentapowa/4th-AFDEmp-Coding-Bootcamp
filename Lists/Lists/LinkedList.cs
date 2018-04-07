@@ -2,17 +2,17 @@
 
 namespace Lists
 {
-    public class LinkedList
+    public class MyListObject<T>
     {
         //Node class
         private class Node
         {
-            public int Value { get; set; }
+            public T Value { get; set; }
             public Node Next { get; set; }
             public Node Previous { get; set; }
 
             // Node Constructor
-            public Node(int Value, Node previous){
+            public Node(T Value, Node previous){
                 this.Value = Value;
                 this.Next = null;
                 this.Previous = previous;
@@ -20,7 +20,7 @@ namespace Lists
         }
 
 
-        //Fields n' Properties (of LinkedList)
+        //Fields n' Properties
         private Node Head;
         private Node Tail;
 
@@ -47,7 +47,7 @@ namespace Lists
 
         //
         // Constractor. 'Create new list.
-        public LinkedList()
+        public MyListObject()
         {
             this.Head = null;
         }
@@ -57,8 +57,9 @@ namespace Lists
         //Methods
         //
         //
+
         // Append item in list
-        public void Append(int value)
+        public void Append(T value)
         {   
             //Check if list is empty
             if (Head == null)
@@ -75,7 +76,8 @@ namespace Lists
 
             current.Next = new Node(value,current);
         }
-        // Get item
+
+        // Convert to string
         public string GetString()
         {
             string result = "[";
@@ -93,6 +95,7 @@ namespace Lists
             result += "]";
             return result;
         }
+
         // Revert/flip
         public void Revert()
         {
@@ -113,10 +116,11 @@ namespace Lists
 
             Head = current;
         }
+
         // Access the list by index Get(i)
-        public int? Get(int index)
+        public T Get(int index)
         {
-            int? result = null;
+            T result = default(T);
             if (Head == null)
             {
                 //Console.WriteLine("List is empty.");
@@ -147,6 +151,7 @@ namespace Lists
             throw new Exception("List index out of range.");
 
         }
+
         // Remove item at index Remove(i)
         public void Remove(int index)
         {   
@@ -176,8 +181,6 @@ namespace Lists
                     else
                     {
                         current.Value = current.Next.Value;
-                        //current.Next = current.Next.Next;
-                        //current.Next.Previous = current;
                     }
 
                 }
